@@ -10,6 +10,7 @@ https://www.lazyvim.org/configuration/plugins
 
 Adding a plugin is as simple as adding the plugin spec to one of the files under lua/plugins/\*.lua. You can create as many files there as you want.
 You can structure your lua/plugins folder with a file per plugin, or a separate file containing all the plugin specs for some functionality.
+Config objects must start with a `return` statement
 
 ## Disable plugins
 
