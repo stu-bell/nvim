@@ -1,0 +1,416 @@
+" vim plug https://github.com/junegunn/vim-plug
+" Reload .vimrc: source % and :PlugInstall 
+" PlugClean[!] 	Remove unlisted plugins
+" Make sure you use single quotes
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+call plug#begin('~/.vim/bundle')
+
+" Plug 'ggandor/lightspeed.nvim'
+Plug 'ggandor/leap.nvim'
+Plug 'tpope/vim-surround'
+Plug 'simrat39/symbols-outline.nvim'
+Plug 'junegunn/goyo.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'yegappan/mru'
+Plug 'tomtom/tcomment_vim'
+Plug 'kg8m/vim-simple-align'
+Plug 'godlygeek/tabular'             
+Plug 'reedes/vim-pencil'
+Plug 'reedes/vim-lexical'
+Plug 'ctrlpvim/ctrlp.vim'
+
+" conditional loading for vscode (use nvim plugins in nvim, use vscode
+" variations when using inside vscode)
+function! Cond(Cond, ...)
+  let opts = get(a:000, 0, {})
+  return a:Cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+
+
+" junegunn/limelight.vim       
+" tlib_vim            
+" vim-addon-mw-utils  
+" vim-closetag        
+" vim-easygrep        
+" vim-fugitive        
+" vim-jsx             
+" vim-markdown-folding
+" vim-markdown-toc    
+" vim-repeat          
+" vim-snipmate        
+" vim-svelte          
+" vim-svg-indent      
+"
+call plug#end()
+
+" filetype config: https://vi.stackexchange.com/a/10125
+" list known filetypes: :echo getcompletion('', 'filetype')
+" filter to filetypes starting with j :echo getcompletion('j', 'filetype')
+" create new filetype config in file ~/.vim/ftplugin/<filetype>.vim
+if has("autocmd")
+  filetype plugin indent on
+endif
+
+set mouse=a
+
+" escape to normal mode Alt-d
+:vnoremap <M-d> <Esc>
+:inoremap <M-d> <Esc>
+
+"remap leader key
+let mapleader = "'"
+
+" j moves left
+:noremap j h
+" ; moves right
+:noremap ; l
+" k moves down. Note: noremap ignores j->h mapping, above. to illustrate, set :map k j
+:noremap k j
+" l moves up
+:noremap l k
+
+" using ; for moving so remap find next
+:noremap t ;
+" make find previous char consistent
+:noremap T ,
+
+" prefer dt behaviour as df
+" prevent the delay when deleting a line (I think the second d is otherwise waiting for a potential f/F)
+:nnoremap dd dd
+:nnoremap df dt
+:nnoremap dF dT
+
+" map up and down to moving up and down by display lines
+noremap <silent> k gj
+noremap <silent> l gk
+onoremap <silent> k gj
+onoremap <silent> l gk
+
+" o open new line, stay in n mode
+:nnoremap o o<Esc>
+" O open new line above, stay in n mode
+:nnoremap O O<Esc>
+
+" \ repeat command for left hand
+:noremap \ .
+" move by paragraph
+:noremap [ {
+:noremap ] }
+
+" Map Ctrl-Backspace to delete the previous word in insert mode.
+:imap <C-BS> <C-W>
+
+" use system clipboard as unnamed (default) register
+" this prevents blockwise pasting so for that you'll need to use a named register 
+set clipboard=unnamed
+
+" Copy all pattern matches https://vim.fandom.com/wiki/Copy_search_matches#Copy_matches
+function! CopyMatches(reg)
+  let hits = []
+  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/gne
+  let reg = empty(a:reg) ? '+' : a:reg
+  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+endfunction
+command! -register CopyMatches call CopyMatches(<q-reg>)
+
+" copy matches from all buffers to register a:
+" :let @a = ''
+" :bufdo CopyMatches A
+
+
+" line numbers
+set number
+" case insensitive search except when using capital letters
+set ignorecase
+set smartcase
+
+" Scrolling
+set scrolloff=3
+"
+" Ctrl k and l scroll up and down
+:nnoremap <C-k> 1<C-U>
+:nnoremap <C-l> 1<C-D>
+
+" left/right easier for scrolling up/down
+:nnoremap <Left> 1<C-U>
+:nnoremap <Right> 1<C-D>
+:nnoremap <Up> <Left>
+:nnoremap <Down> <Right>
+
+" Switch windows
+" ^[ is the Alt key. From insert mode hit Ctrl-v then Alt-h to
+" insert the keycode for Alt-h, which looks like h
+:nnoremap h <C-W><C-H>
+:nnoremap k <C-W><C-J>
+:nnoremap j <C-W><C-K>
+:nnoremap l <C-W><C-L>
+" in neovim, the alt key mapping works!!
+if has('nvim')
+:nnoremap <A-h> <C-W><C-H>
+:nnoremap <A-k> <C-W><C-J>
+:nnoremap <A-j> <C-W><C-K>
+:nnoremap <A-l> <C-W><C-L>
+endif
+
+" set auto change directory
+set acd
+" command to open Windows Explorer in current directory
+command Expl ! explorer .
+
+" split position
+"set splitbelow
+set splitright
+
+" indentation http://vim.wikia.com/wiki/Indenting_source_code
+:set tabstop=4
+:set shiftwidth=4
+:set expandtab
+
+" enable folding
+set foldmethod=indent "foldmethod=syntax
+" disable folding on file open
+set nofoldenable
+
+" timestamp
+:nnoremap <C-D> "=strftime("%d/%m/%y") <CR>P
+:inoremap <C-D> <C-R>=strftime("%d/%m/%y") <CR>
+:nnoremap <C-T> "=strftime("%H:%M") <CR>P
+:inoremap <C-T> <C-R>=strftime("%H:%M") <CR>
+
+" cursor line
+:set cursorline
+:hi CursorLine   cterm=NONE ctermbg=darkblue ctermfg=white guibg=darkred guifg=white
+
+" todo highlighting
+if !has('nvim') " todo match group not found in nvim
+:match todo /[Tt][Oo][Dd][Oo]/
+endif
+
+set virtualedit=block
+
+" vim path (add directories to search with :find when opening files)
+set path+=~/.vim
+set path+=~/ws
+" open default folder path FIXME: IF NO FILE OPEN ARGUMENTS WERE PASSED??
+" todo: if no file arguments were provided, open default directory?
+" e ~/ws
+
+" status line https://stackoverflow.com/a/21776313
+:set statusline=%<%F\ %h%m%r%y%=%-14.(%l,%c%V%)\ %P
+
+""""""""""""""""" Colours (colors)
+:highlight Normal guibg=Black guifg=White
+" Clone colour scheme's *.vim file into ~/.vim/colors
+" more colour schemes at vimcolors.com
+"https://github.com/kamwitsta/nordisk
+:silent! colo nordisk " silent ignores error in case the colorscheme doesn't exist
+
+" hide tilde on blank lines:
+set fcs=eob:\ "(backslash space)
+
+"""""""""""""""""plugins""
+" easymotion 
+map <Leader> <Plug>(easymotion-prefix)
+" bidirectional f 
+map <Leader>f <Plug>(easymotion-bd-f)
+
+" tabular
+"abbreviate alias Tabularize
+:ab tbz Tabularize
+
+" closetag
+" file extensions where this plugin is enabled.
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js,*.xml'
+
+" make the list of non-closing tags self-closing in the specified files.
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" Disables auto-close if not in a "valid" region (based on filetype)
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+
+"""""""""""""""" Writing Zen Mode """
+
+" goyo/nordisk colour bug
+" Just seems a problem with Goyo and nordisk. Limelight and nordisk on their
+" own seem to play well together (until after the error has occured)
+" Fix with :colo nordisk | syntax on
+" Using Zen raises errors while using Goyo on its own does not
+" Error detected while processing ColorSheme Auto commands for "*":
+" E605: Exception not caught: Unsupported color scheme.
+" g:limelight_conceal_ctermfg required. 
+" Error detected while processing function goyo#execute line 20: E171: Missing :endif
+" so it's an uncaught exception?  - how do we catch it?
+" Line 20 of goyo#execute is call s:goyo_off() - problem in there?
+
+com! Zen call WritingModeToggle()
+"don't think this combo is getting through?
+:nnoremap <C-Z> :call WritingModeToggle()<CR>
+
+" flag variable tracks whether we're in writing mode or not
+let s:inWritingMode = 0
+"
+" toggle writing mode on/off
+func! WritingModeToggle()
+	if s:inWritingMode
+		" turn it off
+		let s:inWritingMode = 0
+		call WritingModeOff()
+	else
+		" turn it on
+		let s:inWritingMode = 1
+		call WritingMode()
+	endif
+endfu
+
+" is the current tab empty? :echo TabIsEmpty() https://stackoverflow.com/a/9757183/6672339
+function! TabIsEmpty()
+    return winnr('$') == 1 && len(expand('%')) == 0 && line2byte(line('$') + 1) <= 2
+endfunction
+
+" the actual functions to turn on writing mode
+func! WritingMode() 
+	" FullScreen
+	sleep 80m " sleep <100 mil to wait for full screen to render before setting Goyo to 40% of the final screen size
+	" PencilHard
+	set spell
+	Goyo 60%
+  setlocal wrap 
+  setlocal linebreak
+  setlocal nolist
+	"Limelight
+  " setlocal formatoptions=1 
+  " setlocal noexpandtab 
+  " map j gj 
+  " map k gk
+  " setlocal spell spelllang=en_us 
+  " set thesaurus+=/Users/sbrown/.vim/thesaurus/mthesaur.txt
+  " set complete+=s
+  " set formatprg=par
+  " setlocal linebreak 
+endfu 
+func! WritingModeOff()
+	" PencilOff
+	FullScreenOff
+	" Limelight!
+	set spell!
+	silent! Goyo! " ignore Goyo error with nordisk
+	colo nordisk  " then fix the colours
+	syntax on     " including syntax highlighting
+endfu
+
+"""""""""""""""" Reading Mode """
+com! R  call ReadingModeToggle(0)
+com! RN call ReadingModeToggle(1)
+
+" flag variable tracks whether we're in Reading mode or not
+let s:inReadingMode = 0
+
+" toggle Reading mode on/off
+func! ReadingModeToggle(NewTab)
+	if s:inReadingMode
+		" turn it off
+		let s:inReadingMode = 0
+		call ReadingModeOff()
+	else
+		if a:NewTab
+			" open a new tab for the contents
+			tabe
+		endif 
+		" turn it on
+		let s:inReadingMode = 1
+		call ReadingMode()
+	endif
+endfu
+
+" the actual functions to turn on Reading mode
+func! ReadingMode() 
+	" if the tab is empty, assume we're about to paste from clipboard
+	if TabIsEmpty() 
+		execute 'normal! "*p'
+	endif
+	" FullScreen
+	sleep 80m " sleep <100 mil to wait for full screen to render before setting Goyo to 40% of the final screen size
+	Goyo 60%
+	set ft=markdown " probably reading markdown highlighting
+	silent! %s/•\s\?/- / 	" get proper dashes for formatting bullets
+	
+	set spell!	" spelling is annoying if we're just reading
+	" format document
+	execute "normal! gggqGgg" 
+endfu 
+
+func! ReadingModeOff()
+	" FullScreenOff
+	Limelight!
+	silent! Goyo! " ignore Goyo error with nordisk
+	colo nordisk  " then fix the colours
+	syntax on     " including syntax highlighting
+endfu
+
+"""""""""""""""" Commands """
+" open a terminal bash terminal in a new tab. abbreviation/alias
+:command Bash vs | terminal bash 
+" Alt r to paste register when in terminal buffer
+if has('nvim')
+  tnoremap <expr> <A-r> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+endif
+
+" copy/paste rendered markdown
+" how to make the returned markdown as simple as possible, no styles, and ??? instead of quotes?
+:command MdPaste :read  !powershell -command "Get-Clipboard -TextFormat html | pandoc -f html -t markdown-smart"
+" todo: how to format lists without needing an empty line above a bullet list?
+:command MdCopy  :write !powershell -command "pandoc -f gfm -t html | Set-Clipboard -AsHtml"
+
+" Full screen shortcuts 
+if has('nvim')
+:command -bar FullScreen call GuiWindowFullScreen(1)
+:command FullScreenOff call GuiWindowFullScreen(0) | call GuiWindowMaximized(1)
+endif
+
+" open the temp file alias (Temp! discards current buffer)
+:command -bang Temp e<bang> ~/ws/temp.md
+cnoreabbrev Tmp Temp
+
+" Diffbeforesave runs diff between the file on disk and the buffer that will be written to the file on next write
+:command Diffbeforesave w !diff % - 
+" Diff <file> opens diffs a new file in vertical
+:command -nargs=1 -complete=file Diff vertical diffsplit <args>
+
+" save as epub: EpubSaveAs <filename>
+:command -nargs=1 -complete=file EpubSaveAs w !pandoc -o <args>
+
+" git
+:command -nargs=* Git !git 
+:command Gits !git status
+" diff flag -w ignores whitespace
+:command -nargs=* Gitd !git diff % 
+" diff all 
+:command -nargs=* Gitda !git diff 
+:command -nargs=1 Gitc w|!git commit -am "<args>"
+:command Gitp !git push
+:command Gita !git add -A
+:command Gitl !git log --oneline
+
+" markdown
+let g:markdown_fold_style = 'nested'
+
+augroup lexical
+  autocmd!
+  autocmd FileType markdown,mkd call lexical#init()
+  autocmd FileType textile call lexical#init()
+  autocmd FileType text call lexical#init({ 'spell': 0 })
+augroup END
+
+" convert underlined markdown headers to # headers
+:command MdHeaders %s/\(.\+\)\n=\{3,\}/# \1/ |%s/\(.\+\)\n-\{3,\}/## \1/
+
+" search for next/previous markdown heading
+:nnoremap ) /^#\+ <CR>
+:nnoremap ( ?^#\+ <CR>
+
+
+
+

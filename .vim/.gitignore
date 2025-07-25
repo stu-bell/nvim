@@ -1,0 +1,5 @@
+# actual plugin files. List of previously installed plugins should be in plugins.list (see vimbun)
+bundle/*
+colors/*
+.netrwhist
+
