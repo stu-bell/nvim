@@ -25,18 +25,6 @@ Run `nvim --clean` or `nvim --noplugin` to remove all plugins
 
 Disable individual plugins with Lazy.nvim by setting `enabled = false` in the plugin's config lua.
 
-# tree sitter
-
-For code parsing
-
-Disabled due to lack of C compiler
-
-# Cheatsheets
-
-Using `doctorfree/cheatsheet`
-
-`:Cheatsheet` to display searchable popup help tips for installed plugins. Also can search through cheatsheets added but that don't have a plugin installed yet, if you've added the cheatsheet
-
 # Starter configs
 
 When changing configs, you may need to clear the nvim-data folder, or rename it to nvim-data.bak
@@ -52,4 +40,16 @@ by the same author as lazy.nvim, is a featureful starter config, for which you c
 
 However: it loads a lot of plugins you don't necessarily know about or use yet. It's default config is hidden, and must be overridden, [as justified here](https://github.com/LazyVim/LazyVim/discussions/129)
 
+
+# tree sitter
+
+For code parsing
+
+Disabled due to lack of C compiler
+
+# Cheatsheets
+
+Using `doctorfree/cheatsheet`
+
+`:Cheatsheet` to display searchable popup help tips for installed plugins. Also can search through cheatsheets added but that don't have a plugin installed yet, if you've added the cheatsheet
 
