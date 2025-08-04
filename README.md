@@ -1,28 +1,49 @@
-# 💤 LazyVim
+# Neovim config
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+Config in `~\AppData\Local\nvim`
+
+init.lua entry point. lua folder for most config
+
+# Global config
+
+Global keymaps, options and autocmds can be configured: https://www.lazyvim.org/configuration/general
+
+Plugin specific keymaps can be added to the corresponding plugin spec https://www.lazyvim.org/configuration/keymaps
 
 # Plugins
-https://www.lazyvim.org/configuration/plugins
 
-## Add plugins
+Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 
-Adding a plugin is as simple as adding the plugin spec to one of the files under lua/plugins/\*.lua. You can create as many files there as you want.
-You can structure your lua/plugins folder with a file per plugin, or a separate file containing all the plugin specs for some functionality.
-Config objects must start with a `return` statement
+Add plugin config to lua folder
+
+When adding a plugin, check that it plays well with any devcontainer setup you use.
+
 
 ## Disable plugins
 
-In any file in lua, eg  `lua/plugins/disabled.lua`
+Run `nvim --clean` or `nvim --noplugin` to remove all plugins
 
-```
-return {
-  -- disable trouble
-  { "nvim-treesitter", enabled = false },
-  { "nvim-ts-autotag", enabled = false },
-  { "nvim-treesitter-context", enabled = false },
-  { "mason-lspconfig", enabled = false },
-  { "mason", enabled = false },
-}
-```
+Disable individual plugins with Lazy.nvim by setting `enabled = false` in the plugin's config lua.
+
+# Cheatsheets
+
+Using `doctorfree/cheatsheet`
+
+`:Cheatsheet` to display searchable popup help tips for installed plugins. Also can search through cheatsheets added but that don't have a plugin installed yet, if you've added the cheatsheet
+
+# Starter configs
+
+When changing configs, you may need to clear the nvim-data folder, or rename it to nvim-data.bak
+
+## [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) - designed to be a starter config that you can modify yourself
+
+    - [Dependency installation on Windows](https://github.com/nvim-lua/kickstart.nvim?tab=readme-ov-file#windows-installation) - see wsl option
+    - [Modular fork of kickstart](https://github.com/dam9000/kickstart-modular.nvim) aims to maintain the same config, just separated out into different files for plugins and config
+
+## [Lazyvim.org](https://lazyvim.org)
+
+by the same author as lazy.nvim, is a featureful starter config, for which you can override the defaults. 
+
+However: it loads a lot of plugins you don't necessarily know about or use yet. It's default config is hidden, and must be overridden, [as justified here](https://github.com/LazyVim/LazyVim/discussions/129)
+
+
