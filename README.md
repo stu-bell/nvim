@@ -25,6 +25,12 @@ Run `nvim --clean` or `nvim --noplugin` to remove all plugins
 
 Disable individual plugins with Lazy.nvim by setting `enabled = false` in the plugin's config lua.
 
+# tree sitter
+
+For code parsing
+
+Disabled due to lack of C compiler
+
 # Cheatsheets
 
 Using `doctorfree/cheatsheet`
