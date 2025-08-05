@@ -1,11 +1,11 @@
-{
-  "alex-popov-tech/store.nvim",
+return {
+  'alex-popov-tech/store.nvim',
   dependencies = {
-    "OXY2DEV/markview.nvim", -- optional, for pretty readme preview / help window
+    'OXY2DEV/markview.nvim', -- optional, for pretty readme preview / help window
   },
-  cmd = "Store",
+  cmd = 'Store',
   keys = {
-    { "<leader>s", "<cmd>Store<cr>", desc = "Open Plugin Store" },
+    { '<leader>s', '<cmd>Store<cr>', desc = 'Open Plugin Store' },
   },
   opts = {
     -- optional configuration here
