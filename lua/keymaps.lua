@@ -16,20 +16,20 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+-- Map Alt+d to Escape in insert mode
+vim.keymap.set({ 'i', 'v', 'c', 't' }, '<A-d>', '<Esc>', { desc = 'Exit insert mode with Alt+d' })
+
+vim.keymap.set({ 'n' }, 'o', 'o<Esc>', { desc = 'Open line below' })
+vim.keymap.set({ 'n' }, 'O', 'O<Esc>', { desc = 'Open line above' })
+
+-- NOTE  Remap hjkl; to jkl;h (shift navigation keys one position right)
+vim.keymap.set({ 'n', 'v', 'o' }, 'j', 'h', { desc = 'Move left' })
+vim.keymap.set({ 'n', 'v', 'o' }, 'k', 'j', { desc = 'Move down' })
+vim.keymap.set({ 'n', 'v', 'o' }, 'l', 'k', { desc = 'Move up' })
+vim.keymap.set({ 'n', 'v', 'o' }, ';', 'l', { desc = 'Move right' })
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })

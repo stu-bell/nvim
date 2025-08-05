@@ -14,6 +14,9 @@ Search through lists, (keymaps, files, Neovim config files, etc) using `<leader>
 
 Shows hints for completing keybindings
 
+# surround
+mini.ai from mini.nvim
+
 # tree sitter
 
 For code parsing
