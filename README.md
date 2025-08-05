@@ -4,20 +4,16 @@ Config in `~\AppData\Local\nvim`
 
 init.lua entry point. lua folder for most config
 
+With telescope: <leader>sn
+
 # Global config
 
 Global keymaps, options and autocmds can be configured: https://www.lazyvim.org/configuration/general
 
 Plugin specific keymaps can be added to the corresponding plugin spec https://www.lazyvim.org/configuration/keymaps
 
-# Plugins
 
-Using [lazy.nvim](https://github.com/folke/lazy.nvim)
-
-Add plugin config to lua folder
-
-When adding a plugin, check that it plays well with any devcontainer setup you use.
-
+# Troubleshooting
 
 ## Disable plugins
 
@@ -40,16 +36,12 @@ by the same author as lazy.nvim, is a featureful starter config, for which you c
 
 However: it loads a lot of plugins you don't necessarily know about or use yet. It's default config is hidden, and must be overridden, [as justified here](https://github.com/LazyVim/LazyVim/discussions/129)
 
+# Plugin stores / sites to browse plugins
 
-# tree sitter
+From inside nvim [alex-popov-tech/store.nvim](https://github.com/alex-popov-tech/store.nvim)
 
-For code parsing
+[neovimcraft.com](https://neovimcraft.com/)
 
-Disabled due to lack of C compiler
+[nvim.store](https://nvim.store/)
 
-# Cheatsheets
-
-Using `doctorfree/cheatsheet`
-
-`:Cheatsheet` to display searchable popup help tips for installed plugins. Also can search through cheatsheets added but that don't have a plugin installed yet, if you've added the cheatsheet
 
