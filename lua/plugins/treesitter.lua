@@ -1,7 +1,7 @@
 return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    -- Disabled due to lack of C compiler. See https://github.com/nvim-lua/kickstart.nvim?tab=readme-ov-file#windows-installation
+    -- Disabled due to lack of C compiler. See https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support
     enabled = false,
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
