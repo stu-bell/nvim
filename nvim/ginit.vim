@@ -1,3 +1,4 @@
+" config for nvim-qt https://github.com/equalsraf/neovim-qt
 " addjust font size by amount (relative to 12)
 let s:fontsize = 12
 function! AdjustFontSize(amount)
