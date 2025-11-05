@@ -57,4 +57,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Ctrl Backspace in insert mode deletes last word
+vim.keymap.set('i', '<C-h>', '<C-w>', { noremap = true })
+vim.keymap.set('i', '<C-BS>', '<C-w>', { noremap = true })
+
 -- vim: ts=2 sts=2 sw=2 et
