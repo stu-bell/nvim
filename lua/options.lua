@@ -9,6 +9,19 @@ vim.o.number = true
 --  Experiment for yourself to see if you like it!
 vim.o.relativenumber = true
 
+-- allow markdown folding
+vim.g.markdown_folding = 1
+-- zo	open current fold
+-- zO	recursively open current fold
+-- zc	close current fold
+-- zC	recursively close current fold
+-- za	toggle current fold
+-- zA	recursively open/close current fold
+-- zm	reduce foldlevel by one
+-- zM	close all folds
+-- zr	increase foldlevel by one
+-- zR	open all folds
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
 
