@@ -1,6 +1,8 @@
 -- LSP Plugins
 return {
   {
+    -- load when a file is opened
+    event = { 'BufReadPre', 'BufNewFile' },
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
     'folke/lazydev.nvim',
