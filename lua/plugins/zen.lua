@@ -1,4 +1,5 @@
 return {
+  -- autocmd to trigger ZenMode  - see autocmd.lua
   'folke/zen-mode.nvim',
   opts = {
     window = {
