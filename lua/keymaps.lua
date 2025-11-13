@@ -34,6 +34,10 @@ vim.keymap.set('n', '<A-;>', '<C-w>l', { noremap = true, silent = true }) -- Rig
 vim.keymap.set('n', '<A-k>', '<C-w>j', { noremap = true, silent = true }) -- Down
 vim.keymap.set('n', '<A-l>', '<C-w>k', { noremap = true, silent = true }) -- Up
 
+-- scroll buffer while keeping cursor line same place
+vim.keymap.set('n', '<C-k>', '<C-e>j', { noremap = true, silent = true }) -- down
+vim.keymap.set('n', '<C-l>', '<C-y>k', { noremap = true, silent = true }) -- up
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 
