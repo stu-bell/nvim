@@ -14,10 +14,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set({ 't' }, '<A-d>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Map Alt+d to Escape in insert mode
-vim.keymap.set({ 'i', 'v', 'c', 't' }, '<A-d>', '<Esc>', { desc = 'Exit insert mode with Alt+d' })
+vim.keymap.set({ 'i', 'v', 'c' }, '<A-d>', '<Esc>', { desc = 'Exit insert mode with Alt+d' })
 
 vim.keymap.set({ 'n' }, 'o', 'o<Esc>', { desc = 'Open line below' })
 vim.keymap.set({ 'n' }, 'O', 'O<Esc>', { desc = 'Open line above' })
@@ -65,5 +65,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.keymap.set('i', '<C-h>', '<C-w>', { noremap = true })
 vim.keymap.set('i', '<C-BS>', '<C-w>', { noremap = true })
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { noremap = true })
+
+-- Map <leader>t to toggle terminal
+vim.keymap.set('n', '<leader>;', '<cmd>ToggleTerm<CR>', { noremap = true, silent = true })
 
 -- vim: ts=2 sts=2 sw=2 et
