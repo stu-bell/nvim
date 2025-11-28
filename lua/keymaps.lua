@@ -66,7 +66,7 @@ vim.keymap.set('i', '<C-h>', '<C-w>', { noremap = true })
 vim.keymap.set('i', '<C-BS>', '<C-w>', { noremap = true })
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { noremap = true })
 
--- Map <leader>t to toggle terminal
-vim.keymap.set('n', '<leader>;', '<cmd>ToggleTerm<CR>', { noremap = true, silent = true })
+-- Map <C-t> to toggle terminal
+vim.keymap.set('n', '<C-t>', '<cmd>ToggleTerm<CR>', { noremap = true, silent = true })
 
 -- vim: ts=2 sts=2 sw=2 et
