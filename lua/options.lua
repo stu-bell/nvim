@@ -47,8 +47,13 @@ vim.schedule(function()
       },
       paste = {
         -- Terminals often don't support OSC52 for pasting. Try native paste, eg: Ctrl+Shift+V / Cmd+V / Shift+Insert / Right-Click
-        ['+'] = osc52.paste '+',
-        ['*'] = osc52.paste '*',
+        -- void functions
+        ['+'] = function()
+          return nil
+        end,
+        ['*'] = function()
+          return nil
+        end,
       },
     }
   end
