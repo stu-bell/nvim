@@ -33,7 +33,24 @@ vim.o.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
+  vim.opt.clipboard = 'unnamedplus'
+
+  -- if we're in a remote/container environment, use OSC52 for clipboard
+  if vim.env.SSH_TTY or vim.env.SSH_CLIENT or vim.env.REMOTE_CONTAINERS then
+    local osc52 = require 'vim.ui.clipboard.osc52'
+
+    vim.g.clipboard = {
+      name = 'OSC 52',
+      copy = {
+        ['+'] = osc52.copy '+',
+        ['*'] = osc52.copy '*',
+      },
+      paste = {
+        ['+'] = osc52.paste '+',
+        ['*'] = osc52.paste '*',
+      },
+    }
+  end
 end)
 
 -- Enable break indent
