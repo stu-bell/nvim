@@ -36,9 +36,13 @@ vim.schedule(function()
   vim.o.clipboard = 'unnamedplus'
 
   -- if we're in a remote/container environment, use OSC52 for clipboard
+  -- Terminals often don't support OSC52 for pasting
+  -- Try native paste, eg: Ctrl+Shift+V / Cmd+V / Shift+Insert / Right-Click
   if vim.env.SSH_TTY or vim.env.SSH_CLIENT or vim.env.REMOTE_CONTAINERS then
     local osc52 = require 'vim.ui.clipboard.osc52'
-
+    local function paste()
+      return { vim.fn.split(vim.fn.getreg '', '\n'), vim.fn.getregtype '' }
+    end
     vim.g.clipboard = {
       name = 'OSC 52',
       copy = {
@@ -46,14 +50,8 @@ vim.schedule(function()
         ['*'] = osc52.copy '*',
       },
       paste = {
-        -- Terminals often don't support OSC52 for pasting. Try native paste, eg: Ctrl+Shift+V / Cmd+V / Shift+Insert / Right-Click
-        -- void functions
-        ['+'] = function()
-          return nil
-        end,
-        ['*'] = function()
-          return nil
-        end,
+        ['+'] = paste,
+        ['*'] = paste,
       },
     }
   end
