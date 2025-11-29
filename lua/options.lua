@@ -33,7 +33,7 @@ vim.o.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+  vim.o.clipboard = 'unnamedplus'
 
   -- if we're in a remote/container environment, use OSC52 for clipboard
   if vim.env.SSH_TTY or vim.env.SSH_CLIENT or vim.env.REMOTE_CONTAINERS then
@@ -46,6 +46,7 @@ vim.schedule(function()
         ['*'] = osc52.copy '*',
       },
       paste = {
+        -- Terminals often don't support OSC52 for pasting. Try native paste, eg: Ctrl+Shift+V / Cmd+V / Shift+Insert / Right-Click
         ['+'] = osc52.paste '+',
         ['*'] = osc52.paste '*',
       },
