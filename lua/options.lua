@@ -57,6 +57,9 @@ vim.schedule(function()
   end
 end)
 
+-- default shell powershell
+vim.o.shell = 'powershell.exe'
+
 -- Enable break indent
 vim.o.breakindent = true
 
