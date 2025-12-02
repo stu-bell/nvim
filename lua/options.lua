@@ -58,7 +58,8 @@ vim.schedule(function()
 end)
 
 -- default shell powershell
-vim.o.shell = 'powershell.exe'
+-- FIXME: setting this for normal terminal shells seems to break toggle term
+-- vim.o.shell = 'powershell'
 
 -- Enable break indent
 vim.o.breakindent = true
