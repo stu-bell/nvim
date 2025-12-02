@@ -14,6 +14,7 @@ return {
   },
   opts = {
     window = {
+      width = 20,
       mappings = {
         -- normal keybindings were mapping l to k, but didn't seem to work in neo-tree, so remap here
         ['l'] = function(state)
