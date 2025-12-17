@@ -35,7 +35,14 @@ return {
     vim.api.nvim_create_autocmd('TermOpen', {
       pattern = '*',
       callback = function()
-        vim.keymap.set('n', '<C-n>', '<cmd>TermNew<CR>', { buffer = 0 })
+        vim.keymap.set('n', '<C-n>', function()
+          local name = vim.fn.input 'Terminal name: '
+          if name ~= '' then
+            vim.cmd('TermNew name="' .. name .. '"')
+          else
+            vim.cmd 'TermNew'
+          end
+        end, { buffer = 0 })
       end,
     })
   end,
