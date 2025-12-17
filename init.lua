@@ -108,5 +108,11 @@ require 'lazy-bootstrap'
 -- [[ Configure and install plugins ]]
 require 'lazy-plugins'
 
+-- [[ Custom Commands ]]
+vim.api.nvim_create_user_command('InsertDateTime', function()
+  local datetime = os.date '%Y-%m-%d %H:%M:%S'
+  vim.api.nvim_put({ datetime }, 'c', true, true)
+end, {})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
