@@ -43,6 +43,7 @@ return {
             vim.cmd 'TermNew'
           end
         end, { buffer = 0 })
+        vim.keymap.set('n', '<C-s>', '<cmd>TermSelect<cr>', { buffer = 0 })
       end,
     })
   end,
