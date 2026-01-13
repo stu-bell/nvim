@@ -8,6 +8,9 @@ vim.keymap.set('n', '<A-r>', function()
   vim.o.columns = cols
 end, { desc = 'hack to redraw screen when buffers/terminals overflow or bleed text onto other panes' })
 
+-- maximise window
+vim.keymap.set('n', '<C-m>', '<cmd>wincmd |<CR>')
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
