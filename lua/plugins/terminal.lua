@@ -46,7 +46,7 @@ return {
             vim.cmd 'TermNew'
           end
         end, { buffer = 0 })
-        vim.keymap.set({ 't', 'n' }, '<C-s>', function()
+        vim.keymap.set({ 'n' }, '<C-s>', function()
           vim.cmd 'close' -- close the current terminal window first
           vim.cmd 'TermSelect'
         end, { desc = 'Replace terminal with another ToggleTerm' })
