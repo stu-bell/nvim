@@ -1,6 +1,13 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+-- hack to redraw screen when buffers/terminals overflow or bleed text onto other panes
+vim.keymap.set('n', '<A-r>', function()
+  local cols = vim.o.columns
+  vim.o.columns = cols - 1
+  vim.o.columns = cols
+end, { desc = 'hack to redraw screen when buffers/terminals overflow or bleed text onto other panes' })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
