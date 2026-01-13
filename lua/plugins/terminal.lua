@@ -13,7 +13,7 @@ return {
   'akinsho/toggleterm.nvim',
   opts = {
     shell = default_shell,
-    direction = 'vertical',
+    direction = 'float',
     size = 80,
   },
   config = function(_, opts)
