@@ -36,4 +36,22 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    require('neo-tree').setup(opts)
+
+    -- Autocommand to ensure minimum width when entering neo-tree
+    local min_width = 20
+    vim.api.nvim_create_autocmd('BufEnter', {
+      pattern = '*',
+      callback = function()
+        if vim.bo.filetype == 'neo-tree' then
+          local current_width = vim.api.nvim_win_get_width(0)
+          if current_width < min_width then
+            vim.api.nvim_win_set_width(0, min_width)
+          end
+        end
+      end,
+      desc = 'Ensure neo-tree minimum width',
+    })
+  end,
 }
