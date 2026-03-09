@@ -16,7 +16,7 @@ vim.o.relativenumber = true
 -- allow markdown folding
 vim.g.markdown_folding = 1
 -- start with top level headings open
-vim.opt.foldlevelstart = 1
+vim.opt.foldlevelstart = 2
 -- zo	open current fold
 -- zO	recursively open current fold
 -- zc	close current fold
