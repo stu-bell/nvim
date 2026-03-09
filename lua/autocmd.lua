@@ -1,7 +1,11 @@
--- auto enter zenmode for md files
+-- auto enter zenmode for md files, unless we're in a neovim embedded terminal instance
 vim.api.nvim_create_autocmd('VimEnter', {
   pattern = '*.md',
-  command = 'ZenMode',
+  callback = function()
+    if not vim.env.NVIM then
+      vim.cmd 'ZenMode'
+    end
+  end,
 })
 
 -- ensure unix line endings for .sh files
