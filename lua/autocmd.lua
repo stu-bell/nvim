@@ -1,13 +1,3 @@
--- auto enter zenmode for md files, unless we're in a neovim embedded terminal instance
-vim.api.nvim_create_autocmd('VimEnter', {
-  pattern = '*.md',
-  callback = function()
-    if not vim.env.NVIM then
-      vim.cmd 'ZenMode'
-    end
-  end,
-})
-
 -- ensure unix line endings for .sh files
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.sh',
@@ -27,5 +17,23 @@ vim.api.nvim_create_autocmd('WinEnter', {
         vim.cmd('vertical resize ' .. target_width)
       end
     end
+  end,
+})
+
+-- auto enter zenmode for md files, unless we're in a neovim embedded terminal instance
+vim.api.nvim_create_autocmd('VimEnter', {
+  pattern = '*.md',
+  callback = function()
+    if not vim.env.NVIM then
+      vim.cmd 'ZenMode'
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = { 'en_gb' }
   end,
 })
