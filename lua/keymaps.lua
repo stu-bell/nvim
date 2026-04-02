@@ -32,21 +32,26 @@ vim.keymap.set({ 'i', 'v', 'c', 'n' }, '<A-d>', '<Esc>', { desc = 'Exit insert m
 vim.keymap.set({ 'n' }, 'o', 'o<Esc>', { desc = 'Open line below' })
 vim.keymap.set({ 'n' }, 'O', 'O<Esc>', { desc = 'Open line above' })
 
--- NOTE  Remap hjkl; to jkl;h (shift navigation keys one position right)
-vim.keymap.set({ 'n', 'v', 'o' }, 'j', 'h', { desc = 'Move left' })
-vim.keymap.set({ 'n', 'v', 'o' }, 'k', 'j', { desc = 'Move down' })
-vim.keymap.set({ 'n', 'v', 'o' }, 'l', 'k', { desc = 'Move up' })
-vim.keymap.set({ 'n', 'v', 'o' }, ';', 'l', { desc = 'Move right' })
+-- -- NOTE  Remap movement keys: hjkl; to jkl;h (shift navigation keys one position right)
+-- vim.keymap.set({ 'n', 'v', 'o' }, 'j', 'h', { desc = 'Move left' })
+-- vim.keymap.set({ 'n', 'v', 'o' }, 'k', 'j', { desc = 'Move down' })
+-- vim.keymap.set({ 'n', 'v', 'o' }, 'l', 'k', { desc = 'Move up' })
+-- vim.keymap.set({ 'n', 'v', 'o' }, ';', 'l', { desc = 'Move right' })
 
--- Easier window navigation with Alt + keys
-vim.keymap.set('n', '<A-j>', '<C-w>h', { noremap = true, silent = true }) -- Left
-vim.keymap.set('n', '<A-;>', '<C-w>l', { noremap = true, silent = true }) -- Right
-vim.keymap.set('n', '<A-k>', '<C-w>j', { noremap = true, silent = true }) -- Down
-vim.keymap.set('n', '<A-l>', '<C-w>k', { noremap = true, silent = true }) -- Up
+-- NOTE  Remap movement keys: h->l, l->;, ;->h
+vim.keymap.set({ 'n', 'v', 'o' }, 'l', 'h', { desc = 'Move left' })
+vim.keymap.set({ 'n', 'v', 'o' }, ';', 'l', { desc = 'Move right' })
+vim.keymap.set({ 'n', 'v', 'o' }, 'h', ';', { desc = 'Remap ;' })
 
 -- scroll buffer while keeping cursor line same place
-vim.keymap.set('n', '<C-k>', '<C-e>j', { noremap = true, silent = true }) -- down
-vim.keymap.set('n', '<C-l>', '<C-y>k', { noremap = true, silent = true }) -- up
+vim.keymap.set('n', '<C-j>', '<C-e>j', { noremap = true, silent = true }) -- down
+vim.keymap.set('n', '<C-k>', '<C-y>k', { noremap = true, silent = true }) -- up
+
+-- Easier window navigation with Alt + movement keys
+vim.keymap.set('n', '<A-j>', '<C-w>j', { noremap = true, silent = true }) -- Down
+vim.keymap.set('n', '<A-k>', '<C-w>k', { noremap = true, silent = true }) -- UP
+vim.keymap.set('n', '<A-l>', '<C-w>h', { noremap = true, silent = true }) -- Left
+vim.keymap.set('n', '<A-;>', '<C-w>l', { noremap = true, silent = true }) -- Right
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
