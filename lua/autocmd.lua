@@ -20,15 +20,15 @@ vim.api.nvim_create_autocmd('WinEnter', {
   end,
 })
 
--- auto enter zenmode for md files, unless we're in a neovim embedded terminal instance
-vim.api.nvim_create_autocmd('VimEnter', {
-  pattern = '*.md',
-  callback = function()
-    if not vim.env.NVIM then
-      vim.cmd 'ZenMode'
-    end
-  end,
-})
+-- -- auto enter zenmode for md files, unless we're in a neovim embedded terminal instance
+-- vim.api.nvim_create_autocmd('VimEnter', {
+--   pattern = '*.md',
+--   callback = function()
+--     if not vim.env.NVIM then
+--       vim.cmd 'ZenMode'
+--     end
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',
