@@ -18,9 +18,9 @@ return {
       mappings = {
         ['/'] = 'none', -- disable neotree's filter command
         ['f'] = 'none', -- disable neotree's search  command
-        -- normal keybindings were mapping l to k, but didn't seem to work in neo-tree, so remap here
+        -- normal keybindings were mapping l to h, but didn't seem to work in neo-tree, so remap here
         ['l'] = function(state)
-          vim.cmd 'normal! k'
+          vim.cmd 'normal! h'
         end,
         ['\\'] = 'close_window',
       },
